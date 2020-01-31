@@ -1,7 +1,11 @@
-
+<!DOCTYPE HTML>
 <html>
+
 <head>
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1 user-scalable=0' name='viewport'>
 
     <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
     <script type="text/javascript" src="inc/js/jquery-3.3.1.slim.min.js"></script>
@@ -11,10 +15,38 @@
     <script type="text/javascript" src="inc/js/mobileController.js"></script>
 
     <link rel="stylesheet" type="text/css" href="inc/mobileController.css">
+
+    <link rel="stylesheet" type="text/css" href="inc/button/button.css">
+    <link rel="stylesheet" type="text/css" href="inc/dpad/dpad.css">
+    <link rel="stylesheet" type="text/css" href="inc/styles.css">
+    <link rel="stylesheet" type="text/css" href="inc/controls.css">
 </head>
 <body>
 
-<div id="some-id" ontouchstart="someMethod();"></div>
+
+<div id="controller-container">
+
+    <div id="view-0" class="view" style="display: flex;">
+        <div id="view-0-section-0" class="section " style="height: 100%;">
+            <div id="view-0-section-0-element-0" class="dpad-absolute-container">
+                <div class="dpad-absolute" style="position: static;">
+                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-up"></div>
+                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-down"></div>
+                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-left"></div>
+                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-right"></div>
+                </div>
+            </div>
+        </div>
+        <div id="view-0-section-1" class="section " style="height: 100%;">
+            <div id="action-button" class="button-300-300 button-element element">
+                <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="button-text">Action</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--<div id="some-id" ontouchstart="someMethod();"></div>-->
 
 </body>
 </html>

@@ -1,19 +1,9 @@
-var currentDisplayedScreen = "";
-var isDirector = false;
-var connectionGranted = false;
-var airConsoleMessenger = null;
-var votingBlocked = false;
-var lastScreenName = "";
-var currentScreenName = "";
-var debug = false;
-var voteSuccessfull = false;
-
 $(function ()
 {
     InitTouchEvents();
 
-    airConsoleMessenger = new AirConsoleMessenger();
-    airConsoleMessenger.registerEvents(onMessage, onConnectCallback);
+    airConsoleMessenger = new AirConsoleMessenger("landscape");
+    airConsoleMessenger.registerEvents(onMessage);
     airConsoleMessenger.showDefaultUI(false);
 });
 
@@ -23,11 +13,6 @@ function onMessage(fromDeviceId, message)
     {
         airConsoleMessenger.sendMessage((new AirConsoleMessage(AirConsole.SCREEN, "something")).addPayload("something", "something"));
     }
-}
-
-function onConnectCallback(connectedDeviceId)
-{
-    
 }
 
 function InitTouchEvents()

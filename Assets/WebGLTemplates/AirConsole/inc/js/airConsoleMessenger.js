@@ -18,11 +18,11 @@ AirConsoleMessage.prototype.addPayload = function (key, value = "")
 // END AirConsoleMessage //
 
 // AirConsoleMessenger //
-function AirConsoleMessenger()
+function AirConsoleMessenger(orientation)
 {
     this.onMessageHandler = null;
     this.BroadcastId = -1;
-    airconsole = new AirConsole({ "orientation": "portrait" });
+    airconsole = new AirConsole({ "orientation": orientation });
 }
 
 AirConsoleMessenger.prototype.registerEvents = function (onMessageCallback, onConnectCallback = null)
