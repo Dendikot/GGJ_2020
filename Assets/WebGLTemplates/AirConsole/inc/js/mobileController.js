@@ -15,6 +15,16 @@ function onMessage(fromDeviceId, message)
     }
 }
 
+function touchStart()
+{
+    console.log("touch start");
+}
+
+function touchEnd()
+{
+    console.log("touch end");
+}
+
 function InitTouchEvents()
 {
     if (!("ontouchstart" in document.createElement("div")))

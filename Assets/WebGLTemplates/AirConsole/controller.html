@@ -16,10 +16,21 @@
 
     <link rel="stylesheet" type="text/css" href="inc/mobileController.css">
 
-    <link rel="stylesheet" type="text/css" href="inc/button/button.css">
-    <link rel="stylesheet" type="text/css" href="inc/dpad/dpad.css">
-    <link rel="stylesheet" type="text/css" href="inc/styles.css">
-    <link rel="stylesheet" type="text/css" href="inc/controls.css">
+    <link rel="stylesheet" type="text/css" href="inc/airconsole-controls/button/button.css">
+    <link rel="stylesheet" type="text/css" href="inc/airconsole-controls/dpad/dpad.css">
+    <link rel="stylesheet" type="text/css" href="inc/controller/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="inc/controller/styles/controls.css">
+
+    <script type="text/javascript" src="inc/controller/libs/airconsole_view_manager.js"></script>
+
+    <script type="text/javascript" src="inc/airconsole-controls/button/button.js"></script>
+    <script type="text/javascript" src="inc/airconsole-controls/dpad/dpad.js"></script>
+    <script type="text/javascript" src="inc/airconsole-controls/swipe-analog/swipe-analog.js"></script>
+    <script type="text/javascript" src="inc/airconsole-controls/swipe-digital/swipe-digital.js"></script>
+ 
+    <script type="text/javascript" src="inc/controller/js/controller_generator.js"></script>
+    <script type="text/javascript" src="inc/controller/js/main.js"></script>
+
 </head>
 <body>
 
@@ -28,25 +39,27 @@
 
     <div id="view-0" class="view" style="display: flex;">
         <div id="view-0-section-0" class="section " style="height: 100%;">
-            <div id="view-0-section-0-element-0" class="dpad-absolute-container">
+            <div id="dpad" class="dpad-absolute-container">
                 <div class="dpad-absolute" style="position: static;">
-                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-up"></div>
-                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-down"></div>
-                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-left"></div>
-                    <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="dpad-arrow dpad-arrow-right"></div>
+                    <div class="dpad-arrow dpad-arrow-up"></div>
+                    <div class="dpad-arrow dpad-arrow-down"></div>
+                    <div class="dpad-arrow dpad-arrow-left"></div>
+                    <div class="dpad-arrow dpad-arrow-right"></div>
                 </div>
             </div>
         </div>
         <div id="view-0-section-1" class="section " style="height: 100%;">
-            <div id="action-button" class="button-300-300 button-element element">
-                <div ontouchstart="touchStart();" ontouchend="touchEnd();" class="button-text">Action</div>
+            <div id="action" class="button-300-300 button-element element">
+                <div class="button-text">Action</div>
             </div>
         </div>
     </div>
 
-</div>
+    <script type="text/javascript">
+      var ctrl_data = '{"orientation":"landscape","selected_view_id":"view-0","views":[{"id":"view-0","sections":[{"id":"view-0-section-0","elements":[{"id":"dpad","key":"dpad_absolute","name":"DPad Absolute","tmpl":"dpad","constructor_fn":"DPadAbsoluteElement","options":{"constructor_args":{"diagonal":false},"attr_id":"view-0-section-0-element-0","css_classes":"","view_action":{"target":null,"view_id":null}}}],"classes":[]},{"id":"view-0-section-1","elements":[{"id":"action","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-0-section-1-element-0","css_classes":"button-300-300","view_action":{"target":null,"view_id":null},"label":"Action","send_onrelease":true,"message_data":[]}}],"classes":[]}]}]}';
+    </script>
 
-<!--<div id="some-id" ontouchstart="someMethod();"></div>-->
+</div>
 
 </body>
 </html>

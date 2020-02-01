@@ -8,7 +8,7 @@ public class GameServer : MonoBehaviour
 {
     void Awake ()
     {
-        AirConsoleMessenger.Instance.RegisterEvents(this.OnReady, this.OnConnect, this.OnMessage);
+        AirConsoleMessenger.Instance.RegisterEvents(this.OnReady, this.OnConnect, this.OnMessage, this.OnInput);
     }
 
     public void OnReady(string joinCode)
@@ -32,6 +32,11 @@ public class GameServer : MonoBehaviour
             // if(message.PayloadHasValue("something"))
             // { }
         }
+    }
+
+    public void OnInput(int fromDeviceId, AirConsoleInput input)
+    {
+        Debug.Log(input.data["pressed"].ToString());
     }
 
     private void HandleConnection(int deviceId, bool connectionGranted)

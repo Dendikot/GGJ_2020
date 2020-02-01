@@ -10,10 +10,12 @@ public class AirConsoleMessenger
     public const int BroadcastId = -1;
 
     public delegate void OnMessageHandler(int fromDeviceId, AirConsoleMessage message);
+    public delegate void OnInputHandler(int fromDeviceId, AirConsoleInput input);
     public delegate void OnReadyHandler(string joinCode);
     public delegate void OnConnectHandler(int connectedDeviceId);
 
     private OnMessageHandler onMessageHandler = null;
+    private OnInputHandler onInputHandler = null;
     private OnReadyHandler onReadyHandler = null;
     private OnConnectHandler onConnectHandler = null;
 
@@ -41,8 +43,19 @@ public class AirConsoleMessenger
 
     private void OnMessage(int fromDeviceId, JToken data)
     {
-        AirConsoleMessage message = data.ToObject<AirConsoleMessage>();
-        this.onMessageHandler(fromDeviceId, message);
+        
+
+        if(data["element"] != null)
+        {
+            AirConsoleInput input = data.ToObject<AirConsoleInput>();
+            this.onInputHandler(fromDeviceId, input);
+        }
+
+        else
+        {
+            AirConsoleMessage message = data.ToObject<AirConsoleMessage>();
+            this.onMessageHandler(fromDeviceId, message);
+        }
     }
 
     private void OnConnect(int connectedDeviceId)
@@ -80,6 +93,12 @@ public class AirConsoleMessenger
         AirConsole.instance.ShowDefaultUI(showDefaultUI);
     }
 
+    public void RegisterEvents(OnReadyHandler onReadyHandler, OnConnectHandler onConnectHandler, OnMessageHandler onMessageHandler, OnInputHandler onInputHandler)
+    {
+        this.onInputHandler = onInputHandler;
+        this.RegisterEvents(onReadyHandler, onConnectHandler, onMessageHandler);
+    }
+
     public void RegisterEvents(OnReadyHandler onReadyHandler, OnConnectHandler onConnectHandler, OnMessageHandler onMessageHandler)
     {
         this.onReadyHandler = onReadyHandler;
@@ -97,6 +116,7 @@ public class AirConsoleMessenger
         this.onReadyHandler = null;
         this.onConnectHandler = null;
         this.onMessageHandler = null;
+        this.onInputHandler = null;
 
         // unregister events
         if (AirConsole.instance != null)
@@ -108,3 +128,11 @@ public class AirConsoleMessenger
         }
     }
 }
+
+/*
+AirConsoleInput input = data.ToObject<AirConsoleInput>();
+if(input != null && !string.IsNullOrEmpty(input.element))
+{
+    this.onInputHandler(fromDeviceId, input);
+}
+*/
