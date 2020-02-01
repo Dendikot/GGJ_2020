@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO : Add a big health demage at every x minute with % of chance to happen 
+
 public class MachinePart : MonoBehaviour
 {
     public enum MachineType
