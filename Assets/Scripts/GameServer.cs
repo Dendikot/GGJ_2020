@@ -1,9 +1,12 @@
 ﻿using NDream.AirConsole;
 using UnityEngine;
+using TMPro;
 
 public class GameServer : MonoBehaviour
 {
-    int numberOfConnectedClients = 0;
+    public TextMeshProUGUI debugText;
+
+    private int numberOfConnectedClients = 0;
 
     void Awake ()
     {
@@ -40,22 +43,22 @@ public class GameServer : MonoBehaviour
             {
                 if (input.data["key"].Equals("up"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " up pressed");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " up pressed";
                 }
 
                 else if (input.data["key"].Equals("down"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " down pressed");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " down pressed";
                 }
 
                 else if (input.data["key"].Equals("left"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " left pressed");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " left pressed";
                 }
 
                 else if (input.data["key"].Equals("right"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " right pressed");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " right pressed";
                 }
             }
 
@@ -63,22 +66,22 @@ public class GameServer : MonoBehaviour
             {
                 if (input.data["key"].Equals("up"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " up released");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " up released";
                 }
 
                 else if (input.data["key"].Equals("down"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " down released");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " down released";
                 }
 
                 else if (input.data["key"].Equals("left"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " left released");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " left released";
                 }
 
                 else if (input.data["key"].Equals("right"))
                 {
-                    Debug.Log("Player " + playerNumber.ToString() + " right released");
+                    this.debugText.text = "Player " + playerNumber.ToString() + " right released";
                 }
             }
         }
@@ -87,12 +90,12 @@ public class GameServer : MonoBehaviour
         {
             if (input.data["pressed"].Equals("True"))
             {
-                Debug.Log("Player " + playerNumber.ToString() + " action pressed");
+                this.debugText.text = "Player " + playerNumber.ToString() + " action pressed";
             }
 
             else
             {
-                Debug.Log("Player " + playerNumber.ToString() + " action released");
+                this.debugText.text = "Player " + playerNumber.ToString() + " action released";
             }
         }
     }
