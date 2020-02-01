@@ -1,0 +1,12 @@
+#controller-container
+{
+	height: calc(100% - 100px);
+}
+
+#player-number
+{
+	margin-top: 20px;
+	padding: 10px;
+	height: 50px;
+	width: calc(100% - 20px);
+}

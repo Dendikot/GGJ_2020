@@ -3,27 +3,25 @@ $(function ()
     InitTouchEvents();
 
     airConsoleMessenger = new AirConsoleMessenger("landscape");
+//    airConsoleMessenger.registerEvents(onMessage, onConnect);
     airConsoleMessenger.registerEvents(onMessage);
     airConsoleMessenger.showDefaultUI(false);
 });
 
 function onMessage(fromDeviceId, message)
 {
-    if (message.type === "something")
+    if(message.type == "setDeviceNumber")
     {
-        airConsoleMessenger.sendMessage((new AirConsoleMessage(AirConsole.SCREEN, "something")).addPayload("something", "something"));
-    }
+        $("#player-number").text("Player #" + message.payload["deviceNumber"]);
+	}
 }
 
-function touchStart()
+/*
+function onConnect()
 {
-    console.log("touch start");
+    
 }
-
-function touchEnd()
-{
-    console.log("touch end");
-}
+*/
 
 function InitTouchEvents()
 {
@@ -48,3 +46,10 @@ function InitTouchEvents()
         }
     }
 }
+
+/*
+    if (message.type === "something")
+    {
+        airConsoleMessenger.sendMessage((new AirConsoleMessage(AirConsole.SCREEN, "something")).addPayload("something", "something"));
+    }
+*/

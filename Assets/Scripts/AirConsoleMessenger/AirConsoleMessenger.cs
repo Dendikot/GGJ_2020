@@ -13,11 +13,13 @@ public class AirConsoleMessenger
     public delegate void OnInputHandler(int fromDeviceId, AirConsoleInput input);
     public delegate void OnReadyHandler(string joinCode);
     public delegate void OnConnectHandler(int connectedDeviceId);
+    public delegate void OnDisconnectedHandler(int disconnectedDeviceId);
 
     private OnMessageHandler onMessageHandler = null;
     private OnInputHandler onInputHandler = null;
     private OnReadyHandler onReadyHandler = null;
     private OnConnectHandler onConnectHandler = null;
+    private OnDisconnectedHandler onDisconnectHandler = null;
 
     private static AirConsoleMessenger instance = null;
     
@@ -43,8 +45,6 @@ public class AirConsoleMessenger
 
     private void OnMessage(int fromDeviceId, JToken data)
     {
-        
-
         if(data["element"] != null)
         {
             AirConsoleInput input = data.ToObject<AirConsoleInput>();
@@ -66,7 +66,7 @@ public class AirConsoleMessenger
 
     private void OnDisconnect(int disconnectedDeviceId)
     {
-        //this.CustomDebug("d: " + disconnectedDeviceId.ToString());
+        this.onDisconnectHandler(disconnectedDeviceId);
     }
 
     private void OnReady(string joinCode)
@@ -93,16 +93,17 @@ public class AirConsoleMessenger
         AirConsole.instance.ShowDefaultUI(showDefaultUI);
     }
 
-    public void RegisterEvents(OnReadyHandler onReadyHandler, OnConnectHandler onConnectHandler, OnMessageHandler onMessageHandler, OnInputHandler onInputHandler)
+    public void RegisterEvents(OnReadyHandler onReadyHandler, OnConnectHandler onConnectHandler, OnDisconnectedHandler onDisconnectHandler, OnMessageHandler onMessageHandler, OnInputHandler onInputHandler)
     {
         this.onInputHandler = onInputHandler;
-        this.RegisterEvents(onReadyHandler, onConnectHandler, onMessageHandler);
+        this.RegisterEvents(onReadyHandler, onConnectHandler, onDisconnectHandler, onMessageHandler);
     }
 
-    public void RegisterEvents(OnReadyHandler onReadyHandler, OnConnectHandler onConnectHandler, OnMessageHandler onMessageHandler)
+    public void RegisterEvents(OnReadyHandler onReadyHandler, OnConnectHandler onConnectHandler, OnDisconnectedHandler onDisconnectHandler, OnMessageHandler onMessageHandler)
     {
         this.onReadyHandler = onReadyHandler;
         this.onConnectHandler = onConnectHandler;
+        this.onDisconnectHandler = onDisconnectHandler;
         this.onMessageHandler = onMessageHandler;
 
         AirConsole.instance.onReady += this.OnReady;
